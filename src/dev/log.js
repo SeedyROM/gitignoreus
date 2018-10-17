@@ -31,4 +31,5 @@ const buildStyles = (styles) => {
   return funcs
 }
 
+// Because fuck you that's why!
 module.exports = buildStyles(logStyles)

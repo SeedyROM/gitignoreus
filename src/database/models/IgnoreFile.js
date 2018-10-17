@@ -6,7 +6,7 @@ const ignoreFileSchema = mongoose.Schema({
     required: true
   },
   content: {
-    rules: String,
+    type: String,
     require: true
   }
 })
