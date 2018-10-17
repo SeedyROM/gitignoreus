@@ -8,6 +8,11 @@ const ignoreFileSchema = mongoose.Schema({
   content: {
     type: String,
     require: true
+  },
+  type: {
+    type: String,
+    require: true,
+    default: 'contrib'
   }
 })
 
