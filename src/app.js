@@ -4,11 +4,10 @@ const bodyParser = require('body-parser')
 require('express-async-errors')
 
 const app = express()
-require('./router')(app)
-require('./database')(app)
-
 app.use(morgan('combined'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+require('./routes')(app)
+require('./database')(app)
 module.exports = app
