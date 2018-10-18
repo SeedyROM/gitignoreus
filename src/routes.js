@@ -1,4 +1,8 @@
-const { getIgnoreFile, passMetaData, documentNotFound } = require('./controller')
+const {
+  getIgnoreFile,
+  passMetaData,
+  documentNotFound
+} = require('./controller')
 
 module.exports = app => {
   app.get('/:name', async (req, res) => {
@@ -6,7 +10,7 @@ module.exports = app => {
       const file = await getIgnoreFile(req.params)
 
       passMetaData(res, file)
-      file.incrementDownloads()
+      await file.incrementDownloads()
     } catch {
       documentNotFound(res, req)
     }
@@ -17,7 +21,7 @@ module.exports = app => {
       const file = await getIgnoreFile(req.params)
 
       passMetaData(res, file)
-      file.incrementDownloads()
+      await file.incrementDownloads()
     } catch {
       documentNotFound(res, req)
     }
