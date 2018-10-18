@@ -1,25 +1,12 @@
-const IgnoreFile = require('./database/models/IgnoreFile')
-
-const documentNotFound = (res, req) => {
-  res.status(404).send(`Cannot ${req.method} ${req.path}`)
-}
-
-const passMetaData = (res, doc) => {
-  res.set('X-GITIGNOREUS-ID', doc._id)
-  res.set('X-GITIGNOREUS-TYPE', doc.type)
-  res.send(doc.content)
-}
+const { getIgnoreFile, passMetaData, documentNotFound } = require('./controller')
 
 module.exports = app => {
   app.get('/:name', async (req, res) => {
     try {
-      const file = await IgnoreFile.findOne({
-        name: req.params.name,
-        type: 'public'
-      })
+      const file = await getIgnoreFile(req.params)
 
       passMetaData(res, file)
-      await file.incrementDownloads()
+      file.incrementDownloads()
     } catch {
       documentNotFound(res, req)
     }
@@ -27,13 +14,10 @@ module.exports = app => {
 
   app.get('/:type/:name', async (req, res) => {
     try {
-      const file = await IgnoreFile.findOne({
-        name: req.params.name,
-        type: req.params.type
-      })
+      const file = await getIgnoreFile(req.params)
 
       passMetaData(res, file)
-      await file.incrementDownloads()
+      file.incrementDownloads()
     } catch {
       documentNotFound(res, req)
     }
@@ -41,18 +25,15 @@ module.exports = app => {
 
   app.get('/:type/:name/info', async (req, res) => {
     try {
-      const info = await IgnoreFile.findOne({
-        name: req.params.name,
-        type: req.params.type
-      })
+      const file = await getIgnoreFile(req.params)
 
-      // Send back ignore information as JSON
+      // Send back file information as JSON
       res.json({
-        id: info.id,
-        type: info.type,
-        name: info.name,
-        created: info.created,
-        downloads: info.downloads
+        id: file.id,
+        type: file.type,
+        name: file.name,
+        created: file.created,
+        downloads: file.downloads
       })
     } catch {
       documentNotFound(res, req)
