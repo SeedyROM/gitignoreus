@@ -13,6 +13,10 @@ const ignoreFileSchema = mongoose.Schema({
     type: String,
     require: true,
     default: 'contrib'
+  },
+  created: {
+    type: Date,
+    default: new Date()
   }
 })
 

@@ -1,18 +1,21 @@
 const IgnoreFile = require('./database/models/IgnoreFile')
+const { pick } = require('./helpers')
 
 module.exports = app => {
-  app.get('/', async (req, res) => {
-    let payload = await IgnoreFile.findOne({ name: 'test' })
-    console.log(payload)
+  app.get('/:name', async (req, res) => {
+    const file = await IgnoreFile.findOne({
+      name: req.params.name,
+      type: 'public'
+    })
 
-    if (payload) {
-      res.send(payload)
-    } else {
-      res.send(await IgnoreFile.create({
-        name: 'test',
-        content: 'Hello world!',
-        type: 'public'
-      }))
-    }
+    res.send(file.content)
+  })
+  app.get('/info/:type/:name', async (req, res) => {
+    const info = await IgnoreFile.findOne({
+      name: req.params.name,
+      type: req.params.type
+    })
+
+    res.json(pick(info, ['type', 'name', 'created']))
   })
 }
