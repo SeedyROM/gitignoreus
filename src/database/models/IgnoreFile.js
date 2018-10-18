@@ -20,5 +20,7 @@ const ignoreFileSchema = mongoose.Schema({
   }
 })
 
+ignoreFileSchema.index({ name: 1, type: 1 }, { unique: true })
+
 const IgnoreFile = mongoose.model('IgnoreFile', ignoreFileSchema)
 module.exports = IgnoreFile

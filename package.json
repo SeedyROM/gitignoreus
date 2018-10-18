@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --watch ./src src/server.js",
-    "test": "mocha --recursive ./test --require ./test/helpers.js"
+    "dev": "NODE_ENV=dev nodemon --watch ./src src/server.js",
+    "test": "NODE_ENV=test mocha --watch ./test --require ./test/helpers.js"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +28,8 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "mocha": "^5.2.0",
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.4",
+    "sinon": "^7.0.0",
+    "sinon-mongoose": "^2.2.1"
   }
 }

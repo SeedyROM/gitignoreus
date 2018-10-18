@@ -1,7 +1,7 @@
 const chalk = require('chalk')
 const { serverIcon, databaseIcon } = require('../dev/icons')
 
-// Development log symbols
+// Development log symbols!
 const logStyles = {
   server: {
     color: chalk.blue,
@@ -13,7 +13,7 @@ const logStyles = {
   }
 }
 
-// Sleek little func.
+// Sneaky little funcer.
 const buildStyles = (styles) => {
   const funcs = {}
 
@@ -24,7 +24,9 @@ const buildStyles = (styles) => {
       let args = [..._args].join(' ')
       args = s.symbol + ' ' + args
 
-      console.log(s.color(args))
+      if (process.env.NODE_ENV === 'dev') {
+        console.log(s.color(args))
+      }
     }
   }
 

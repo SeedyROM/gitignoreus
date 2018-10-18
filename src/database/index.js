@@ -13,7 +13,10 @@ module.exports = app => {
   }
 
   const dbUri = `mongodb://localhost/gitignoreus-${dbSuffix || 'dev'}`
-  mongoose.connect(dbUri, { useNewUrlParser: true })
+  mongoose.connect(dbUri, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+  })
 
   const database = mongoose.connection
 
