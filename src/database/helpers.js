@@ -3,8 +3,6 @@ const {
   envTypes
 } = require('../helpers')
 
-console.log(env)
-
 const getDatabaseURI = () => {
   let host
   let suffix

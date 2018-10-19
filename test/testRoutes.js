@@ -2,7 +2,9 @@
 const chai = require('chai')
 const sinon = require('sinon')
 
-const { expect } = require('chai')
+const {
+  expect
+} = require('chai')
 const app = require('../src/app')
 
 describe('api routes', () => {
