@@ -7,8 +7,7 @@ const {
 module.exports = app => {
   app.get('/', (req, res) => {
     res.json({
-      'welcome': `Welcome to gitignore.us (gitignoreus). 
-                 Shar-lot-te-tay is the finest binch this side of the Mississippi.`
+      'welcome': `Welcome to gitignore.us (gitignoreus). Shar-lot-te-tay is the finest binch this side of the Mississippi.`
     })
   })
 
