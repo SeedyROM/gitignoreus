@@ -12,12 +12,13 @@ mongoose.plugin(findOrCreate)
 module.exports = app => {
   // Construct database URI
   const uri = getDatabaseURI()
+  // Remove deprecataion warnings
   mongoose.connect(uri, {
     useNewUrlParser: true,
     useCreateIndex: true
   })
 
-  //
+  // Handle our database connection events
   const database = mongoose.connection
   database.on('open', () => {
     log.database(`Database connection established...`)
@@ -27,5 +28,6 @@ module.exports = app => {
     throw err
   })
 
+  // Inject our database instance
   app.database = database
 }
