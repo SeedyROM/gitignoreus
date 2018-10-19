@@ -5,6 +5,12 @@ const {
 } = require('./controller')
 
 module.exports = app => {
+  app.get('/', (req, res) => {
+    res.json({
+      'welcome': 'Welcome to gitignore.us (gitignoreus)'
+    })
+  })
+
   app.get('/:name', async (req, res) => {
     try {
       const file = await getIgnoreFile(req.params)

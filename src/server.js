@@ -3,9 +3,6 @@ const http = require('http')
 
 const log = require('./dev/log')
 
-// const host = process.env.HOST || 'localhost'
-// const port = process.env.PORT || 8000
-
 const host = (process.env.NODE_ENV === 'prod') ? '0.0.0.0' : 'localhost'
 const port = process.env.PORT || 8000
 
