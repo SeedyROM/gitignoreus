@@ -1,0 +1,1 @@
+web: NODE_ENV=test node ./src/server.js
