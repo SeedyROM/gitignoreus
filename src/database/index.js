@@ -1,19 +1,13 @@
 const mongoose = require('mongoose')
 
 const log = require('../dev/log')
+const {
+  getDatabaseURI
+} = require('./helpers')
 
 module.exports = app => {
-  let dbSuffix
-  switch (process.env.NODE_ENV) {
-    case 'TEST':
-    case 'DEV':
-    case 'PROD':
-      dbSuffix = process.env.NODE_ENV.toLowerCase()
-      break
-  }
-
-  const dbUri = `mongodb://localhost/gitignoreus-${dbSuffix || 'dev'}`
-  mongoose.connect(dbUri, {
+  const uri = getDatabaseURI()
+  mongoose.connect(uri, {
     useNewUrlParser: true,
     useCreateIndex: true
   })

@@ -3,4 +3,7 @@ module.exports = {
   "parserOptions": {
     "ecmaVersion": 2019,
   },
+  rules: {
+    "semi": "error"
+  }
 };
