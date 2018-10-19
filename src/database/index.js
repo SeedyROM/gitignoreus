@@ -2,17 +2,12 @@ const mongoose = require('mongoose')
 
 const log = require('../dev/log')
 const {
-  configureConnection
+  getDatabaseURI
 } = require('./helpers')
 
 module.exports = app => {
-  const {
-    host,
-    suffix
-  } = configureConnection()
-
-  const dbUri = `mongodb://${host}/gitignoreus-${suffix || 'dev'}`
-  mongoose.connect(dbUri, {
+  const uri = getDatabaseURI()
+  mongoose.connect(uri, {
     useNewUrlParser: true,
     useCreateIndex: true
   })

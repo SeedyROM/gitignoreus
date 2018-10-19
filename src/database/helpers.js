@@ -5,7 +5,7 @@ const {
 
 console.log(env)
 
-const configureConnection = () => {
+const getDatabaseURI = () => {
   let host
   let suffix
 
@@ -14,7 +14,7 @@ const configureConnection = () => {
   switch (env) {
     case 'test':
     case 'dev':
-      host = 'localhost/gitignoreus'
+      host = 'localhost'
       break
     case 'prod':
       host = '' // TODO: MAKE THIS A REMOTE MONGOCONNECTION
@@ -29,12 +29,9 @@ const configureConnection = () => {
       break
   }
 
-  return {
-    host,
-    suffix
-  }
+  return `mongodb://${host}/gitignoreus-${suffix || 'dev'}`
 }
 
 module.exports = {
-  configureConnection
+  getDatabaseURI
 }
