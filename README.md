@@ -1,4 +1,4 @@
-# gitignoreus
+# 👻 gitignoreus
 
 A simple web service to clone .gitignore files lazily with curl, also a test of self discipline and presistence!
 
