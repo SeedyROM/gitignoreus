@@ -3,6 +3,23 @@ const http = require('http')
 
 const log = require('./dev/log')
 
+const path = require('path')
+const fs = require('fs')
+const {
+  asyncGlob
+} = require('./helpers')
+
+// Check default ignores
+asyncGlob('./defaults/**/*.gitignore')
+  .then((files) => {
+    files.forEach((location) => {
+      const filePath = path.resolve(__dirname, '../', location)
+      console.log(filePath)
+      const data = fs.readFileSync(filePath, 'utf8')
+      console.log(data)
+    })
+  })
+
 const host = (process.env.NODE_ENV === 'prod') ? '0.0.0.0' : 'localhost'
 const port = process.env.PORT || 8000
 

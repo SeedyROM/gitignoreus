@@ -1,6 +1,7 @@
 const env = process.env.NODE_ENV
 const envTypes = ['test', 'dev', 'prod']
 
+// FN IMPORTNT
 // Import directive regex!
 // ^\#?.+!(import).+?(.+) /gm/
 

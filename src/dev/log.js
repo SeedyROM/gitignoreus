@@ -1,14 +1,17 @@
 const chalk = require('chalk')
-const { serverIcon, databaseIcon } = require('../dev/icons')
+const {
+  serverIcon,
+  databaseIcon
+} = require('../dev/icons')
 
 // Development log symbols!
 const logStyles = {
   server: {
-    color: chalk.blue,
+    color: chalk.green,
     symbol: serverIcon
   },
   database: {
-    color: chalk.gray,
+    color: chalk.blue,
     symbol: databaseIcon
   }
 }

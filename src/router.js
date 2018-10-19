@@ -4,15 +4,8 @@ const {
   documentNotFound
 } = require('./controller')
 
-const {
-  asyncGlob
-} = require('./helpers')
-
 module.exports = app => {
   app.get('/', async (req, res) => {
-    const files = await asyncGlob('./defaults/**/*.gitignore')
-    console.log(files)
-
     res.json({
       'welcome': `Welcome to gitignore.us (gitignoreus). Shar-lot-te-tay is the finest binch this side of the Mississippi.`
     })

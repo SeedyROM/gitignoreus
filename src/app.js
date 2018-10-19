@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json())
 
-require('./routes')(app)
+require('./router')(app)
 require('./database')(app)
 
 module.exports = app
