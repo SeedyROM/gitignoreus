@@ -6,14 +6,13 @@ const envTypes = ['test', 'dev', 'prod']
 // ^\#?.+!(import).+?(.+) /gm/
 
 const glob = require('glob')
-const asyncGlob = (pattern, options) => {
-  return new Promise((resolve, reject) => {
+const asyncGlob = (pattern, options) =>
+  new Promise((resolve, reject) =>
     glob(pattern, options, (error, files) => {
       if (error) reject(error)
       else resolve(files)
     })
-  })
-}
+  )
 
 module.exports = {
   env,
