@@ -4,5 +4,6 @@
   "editor.detectIndentation": false,
   "editor.tabSize": 2,
   "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
-  "javascript.suggestionActions.enabled": false
+  "javascript.suggestionActions.enabled": false,
+  "javascript.format.enable": false
 }

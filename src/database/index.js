@@ -1,34 +1,17 @@
 const mongoose = require('mongoose')
 
 const log = require('../dev/log')
+const {
+  configureConnection
+} = require('./helpers')
 
 module.exports = app => {
-  const env = process.env.NODE_ENV
-  const envTypes = ['TEST', 'DEV', 'PROD']
+  const {
+    host,
+    suffix
+  } = configureConnection()
 
-  let dbSuffix
-  let dbHost
-  if (!envTypes.contains(env)) throw new Error('Invalid NODE_ENV')
-
-  switch (env) {
-    case 'TEST':
-    case 'DEV':
-      dbHost = 'localhost/gitignoreus'
-      break
-    case 'PROD':
-      dbHost = '' // TODO: MAKE THIS A REMOTE MONGOCONNECTION
-      break
-  }
-
-  switch (env) {
-    case 'TEST':
-    case 'DEV':
-    case 'PROD':
-      dbSuffix = env.toLowerCase()
-      break
-  }
-
-  const dbUri = `mongodb://${dbHost}/gitignoreus-${dbSuffix || 'dev'}`
+  const dbUri = `mongodb://${host}/gitignoreus-${suffix || 'dev'}`
   mongoose.connect(dbUri, {
     useNewUrlParser: true,
     useCreateIndex: true
