@@ -6,16 +6,17 @@ const log = require('./dev/log')
 const path = require('path')
 const fs = require('fs')
 const {
-  asyncGlob
+  asyncGlob,
+  injectImport
 } = require('./helpers')
 
 // Check default ignores
 asyncGlob('./defaults/**/*.gitignore')
   .then((files) =>
-    files.forEach((location) => {
+    files.forEach((location, i) => {
       const filePath = path.resolve(__dirname, '../', location)
       const data = fs.readFileSync(filePath, 'utf8')
-      console.log(data)
+      injectImport(data)
     })
   )
 
